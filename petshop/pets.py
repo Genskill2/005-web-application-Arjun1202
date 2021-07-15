@@ -20,7 +20,7 @@ def format_date(d):
 def search(field, value):
     conn=db.get_db()
     cursor=conn.cursor()
-    cursor.execute(f"select p.id,p.name,p.sold,an.name from pet p,tag tg1,tags_pets tg2,animal an where tg1.name='{value}' and tg2.tag=tg1.id and tg2.pet=p.id and an.id=p.species")
+    cursor.execute(f"select p.id,p.name,p.bought,p.sold,an.name from pet p,tag tg1,tags_pets tg2,animal an where tg1.name='{value}' and tg2.tag=tg1.id and tg2.pet=p.id and an.id=p.species")
     q=cursor.fetchall()
     d=dict(field=field,value=value,pets=q)
     return render_template('search.html',**d)
